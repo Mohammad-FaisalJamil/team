@@ -1,520 +1,536 @@
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-:root{
-  --primary: #6366f1;
-  --primary-light: #818cf8;
-  --primary-dark: #4f46e5;
-  --primary-bg: #eef2ff;
-  --secondary: #ec4899;
-  --secondary-light: #f472b6;
-  --secondary-dark: #db2777;
-  --secondary-bg: #fce7f3;
-  --success: #10b981;
-  --success-bg: #d1fae5;
-  --error: #ef4444;
-  --error-bg: #fee2e2;
-  --warning: #f59e0b;
-  --warning-bg: #fef3c7;
-  --bg-primary: #ffffff;
-  --bg-secondary: #f8fafc;
-  --bg-tertiary: #f1f5f9;
-  --text-primary: #0f172a;
-  --text-secondary: #64748b;
-  --text-tertiary: #94a3b8;
-  --border: #e2e8f0;
-  --border-light: #f1f5f9;
-  --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
-  --shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
-  --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
-  --radius-sm: 8px;
-  --radius: 12px;
-  --radius-lg: 16px;
-  --radius-xl: 20px;
-}
-@media(prefers-color-scheme:dark){
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manual Entry — SST Farewell</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Tabler Icons CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css">
+  
+  <style>
   :root{
-    --primary: #818cf8;
-    --primary-light: #a5b4fc;
-    --primary-dark: #6366f1;
-    --primary-bg: #1e1b4b;
-    --secondary: #f472b6;
-    --secondary-light: #f9a8d4;
-    --secondary-dark: #ec4899;
-    --secondary-bg: #831843;
-    --success: #34d399;
-    --success-bg: #064e3b;
-    --error: #f87171;
-    --error-bg: #7f1d1d;
-    --warning: #fbbf24;
-    --warning-bg: #78350f;
-    --bg-primary: #1e293b;
-    --bg-secondary: #0f172a;
-    --bg-tertiary: #020617;
-    --text-primary: #f8fafc;
-    --text-secondary: #cbd5e1;
+    --primary: #6366f1;
+    --primary-light: #818cf8;
+    --primary-dark: #4f46e5;
+    --primary-bg: #eef2ff;
+    --secondary: #ec4899;
+    --secondary-light: #f472b6;
+    --secondary-dark: #db2777;
+    --secondary-bg: #fce7f3;
+    --success: #10b981;
+    --success-bg: #d1fae5;
+    --error: #ef4444;
+    --error-bg: #fee2e2;
+    --warning: #f59e0b;
+    --warning-bg: #fef3c7;
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8fafc;
+    --bg-tertiary: #1e1e24; /* Fallback baseline */
+    --text-primary: #0f172a;
+    --text-secondary: #64748b;
     --text-tertiary: #94a3b8;
-    --border: #334155;
-    --border-light: #1e293b;
-    --shadow-sm: 0 1px 2px rgba(0,0,0,0.3);
-    --shadow: 0 4px 6px -1px rgba(0,0,0,0.4), 0 2px 4px -2px rgba(0,0,0,0.4);
-    --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.4), 0 4px 6px -4px rgba(0,0,0,0.4);
+    --border: #e2e8f0;
+    --border-light: #f1f5f9;
+    --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+    --shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
+    --radius-sm: 8px;
+    --radius: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 20px;
   }
-}
-*{box-sizing:border-box;margin:0;padding:0;}
-body{
-  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
-  background:linear-gradient(135deg,var(--bg-tertiary) 0%,var(--bg-secondary) 100%);
-  color:var(--text-primary);
-  font-size:16px;
-  line-height:1.5;
-  min-height:100vh;
-  -webkit-font-smoothing:antialiased;
-}
-.container{
-  max-width:480px;
-  margin:0 auto;
-  padding:20px 16px 100px;
-}
-.hdr{
-  background:linear-gradient(135deg,var(--primary) 0%,var(--primary-dark) 100%);
-  border-radius:var(--radius-xl);
-  padding:24px 20px;
-  display:flex;
-  align-items:center;
-  gap:16px;
-  box-shadow:var(--shadow-lg);
-  margin-bottom:24px;
-}
-.hdr-ico{
-  width:56px;
-  height:56px;
-  border-radius:var(--radius);
-  background:rgba(255,255,255,0.2);
-  backdrop-filter:blur(10px);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:#fff;
-  box-shadow:var(--shadow);
-}
-.hdr-ico i{font-size:28px;}
-.hdr-ttl{
-  font-size:20px;
-  font-weight:700;
-  color:#fff;
-  letter-spacing:-0.5px;
-}
-.hdr-sub{
-  font-size:13px;
-  color:rgba(255,255,255,0.85);
-  margin-top:2px;
-  font-weight:500;
-}
-.sec{
-  font-size:12px;
-  font-weight:600;
-  color:var(--text-secondary);
-  text-transform:uppercase;
-  letter-spacing:1px;
-  margin-bottom:12px;
-  padding-left:4px;
-}
-.card{
-  background:var(--bg-primary);
-  border-radius:var(--radius-lg);
-  border:1px solid var(--border);
-  padding:20px;
-  box-shadow:var(--shadow);
-  margin-bottom:20px;
-}
-.fg{margin-bottom:16px;}
-.fg label{
-  display:block;
-  font-size:13px;
-  font-weight:600;
-  color:var(--text-primary);
-  margin-bottom:8px;
-}
-.fg textarea{
-  width:100%;
-  padding:14px 16px;
-  border-radius:var(--radius);
-  border:2px solid var(--border);
-  background:var(--bg-secondary);
-  color:var(--text-primary);
-  font-size:14px;
-  font-family:'Monaco','Consolas','Courier New',monospace;
-  outline:none;
-  transition:all 0.2s ease;
-  font-weight:500;
-  min-height:120px;
-  resize:vertical;
-}
-.fg textarea:focus{
-  border-color:var(--primary);
-  box-shadow:0 0 0 4px rgba(99,102,241,0.15);
-  background:var(--bg-primary);
-}
-.fg textarea::placeholder{
-  color:var(--text-tertiary);
-  font-weight:400;
-  font-family:'Inter',system-ui,sans-serif;
-}
-.btn-submit{
-  width:100%;
-  padding:16px;
-  border:none;
-  border-radius:var(--radius);
-  background:linear-gradient(135deg,var(--primary) 0%,var(--primary-dark) 100%);
-  color:#fff;
-  font-size:15px;
-  font-weight:600;
-  cursor:pointer;
-  font-family:inherit;
-  transition:all 0.2s ease;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:10px;
-  box-shadow:var(--shadow);
-  margin-top:8px;
-}
-.btn-submit:hover{
-  transform:translateY(-2px);
-  box-shadow:var(--shadow-lg);
-}
-.btn-submit:active{
-  transform:translateY(0);
-}
-.btn-submit i{font-size:20px;}
-.stats{
-  display:grid;
-  grid-template-columns:1fr 1fr 1fr;
-  gap:12px;
-  margin-bottom:20px;
-}
-@media(max-width:380px){
-  .stats{grid-template-columns:1fr;}
-}
-.stat{
-  background:var(--bg-primary);
-  border-radius:var(--radius-lg);
-  padding:20px 16px;
-  text-align:center;
-  border:1px solid var(--border);
-  box-shadow:var(--shadow);
-  transition:all 0.2s ease;
-}
-.stat:hover{
-  transform:translateY(-4px);
-  box-shadow:var(--shadow-lg);
-}
-.stat-n{
-  font-size:28px;
-  font-weight:700;
-  line-height:1;
-}
-.stat-n.t{color:var(--primary);}
-.stat-n.d1{color:var(--primary);}
-.stat-n.d2{color:var(--secondary);}
-.stat-l{
-  font-size:11px;
-  color:var(--text-secondary);
-  text-transform:uppercase;
-  letter-spacing:1px;
-  margin-top:8px;
-  font-weight:600;
-}
-.stat-n.ok{color:var(--success);}
-.res-card{
-  border-radius:var(--radius-lg);
-  border:1px solid var(--border);
-  padding:24px 20px;
-  text-align:center;
-  margin-bottom:16px;
-  background:var(--bg-primary);
-  box-shadow:var(--shadow);
-  animation:fadeInUp 0.3s ease;
-  display:none;
-}
-@keyframes fadeInUp{
-  from{opacity:0;transform:translateY(20px);}
-  to{opacity:1;transform:translateY(0);}
-}
-.res-card.show{display:block;}
-.res-ico{
-  width:64px;
-  height:64px;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  margin:0 auto 16px;
-  box-shadow:var(--shadow);
-}
-.res-ico i{font-size:32px;}
-.res-ico.ok{
-  background:var(--success-bg);
-  color:var(--success);
-}
-.res-ico.err{
-  background:var(--error-bg);
-  color:var(--error);
-}
-.res-ico.warn{
-  background:var(--warning-bg);
-  color:var(--warning);
-}
-.res-ttl{
-  font-size:20px;
-  font-weight:700;
-  margin-bottom:4px;
-}
-.res-ttl.ok{color:var(--success);}
-.res-ttl.err{color:var(--error);}
-.res-ttl.warn{color:var(--warning);}
-.res-sub{
-  font-size:14px;
-  color:var(--text-secondary);
-  margin-bottom:16px;
-  font-weight:500;
-}
-.res-info{
-  background:var(--bg-secondary);
-  border-radius:var(--radius);
-  padding:16px;
-  text-align:left;
-  border:1px solid var(--border);
-}
-.ri{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:10px 0;
-  border-bottom:1px solid var(--border-light);
-}
-.ri:last-child{border-bottom:none;}
-.ri-k{
-  font-size:13px;
-  color:var(--text-secondary);
-  font-weight:500;
-}
-.ri-v{
-  font-size:14px;
-  font-weight:600;
-  color:var(--text-primary);
-}
-.dpill{
-  padding:4px 12px;
-  border-radius:20px;
-  font-size:11px;
-  font-weight:600;
-}
-.dpill.d1{
-  background:var(--primary-bg);
-  color:var(--primary-dark);
-}
-.dpill.d2{
-  background:var(--secondary-bg);
-  color:var(--secondary-dark);
-}
-.btn-clear{
-  padding:8px 16px;
-  border-radius:var(--radius);
-  border:2px solid var(--border);
-  background:var(--bg-primary);
-  color:var(--text-secondary);
-  font-size:13px;
-  font-weight:600;
-  cursor:pointer;
-  font-family:inherit;
-  display:flex;
-  align-items:center;
-  gap:8px;
-  transition:all 0.2s ease;
-}
-.btn-clear i{font-size:16px;}
-.btn-clear:hover{
-  background:var(--bg-secondary);
-  border-color:var(--border);
-}
-.btn-clear.conf{
-  background:var(--error);
-  border-color:var(--error);
-  color:#fff;
-}
-.btn-clear.conf:hover{
-  background:#dc2626;
-  border-color:#dc2626;
-}
-.rec-hdr{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:16px;
-}
-.rc{
-  background:var(--bg-primary);
-  border-radius:var(--radius-lg);
-  border:1px solid var(--border);
-  padding:16px;
-  margin-bottom:12px;
-  box-shadow:var(--shadow-sm);
-  transition:all 0.2s ease;
-}
-.rc:hover{
-  transform:translateY(-2px);
-  box-shadow:var(--shadow);
-}
-.rc-top{
-  display:flex;
-  justify-content:space-between;
-  align-items:flex-start;
-  margin-bottom:12px;
-}
-.rc-nm{
-  font-size:15px;
-  font-weight:600;
-  color:var(--text-primary);
-}
-.rc-rl{
-  font-size:13px;
-  color:var(--text-secondary);
-  font-weight:500;
-  margin-top:2px;
-}
-.rc-bs{
-  display:flex;
-  flex-direction:column;
-  gap:6px;
-  align-items:flex-end;
-}
-.rbadge{
-  font-size:10px;
-  font-weight:600;
-  padding:4px 10px;
-  border-radius:20px;
-  white-space:nowrap;
-}
-.rbadge.ok{
-  background:var(--success-bg);
-  color:var(--success);
-}
-.rbadge.pend{
-  background:var(--bg-secondary);
-  color:var(--text-secondary);
-  border:1px solid var(--border);
-}
-.rc-chips{
-  display:flex;
-  flex-wrap:wrap;
-  gap:8px;
-  margin-top:12px;
-}
-.chip{
-  font-size:11px;
-  padding:6px 12px;
-  background:var(--bg-secondary);
-  border-radius:20px;
-  color:var(--text-secondary);
-  border:1px solid var(--border);
-  display:flex;
-  align-items:center;
-  gap:6px;
-  font-weight:500;
-}
-.chip i{font-size:14px;}
-.empty{
-  text-align:center;
-  padding:60px 20px;
-  color:var(--text-secondary);
-}
-.empty i{
-  font-size:48px;
-  display:block;
-  margin-bottom:16px;
-  color:var(--text-tertiary);
-}
-.empty p{
-  font-size:14px;
-  font-weight:500;
-}
-.toast{
-  position:fixed;
-  bottom:30px;
-  left:50%;
-  transform:translateX(-50%) translateY(20px);
-  background:var(--bg-primary);
-  border:1px solid var(--border);
-  color:var(--text-primary);
-  border-radius:var(--radius-lg);
-  padding:14px 24px;
-  font-size:14px;
-  font-weight:600;
-  white-space:nowrap;
-  opacity:0;
-  transition:all 0.3s ease;
-  pointer-events:none;
-  z-index:1000;
-  box-shadow:var(--shadow-lg);
-}
-.toast.on{
-  opacity:1;
-  transform:translateX(-50%) translateY(0);
-}
-</style>
+  @media(prefers-color-scheme:dark){
+    :root{
+      --primary: #818cf8;
+      --primary-light: #a5b4fc;
+      --primary-dark: #6366f1;
+      --primary-bg: #1e1b4b;
+      --secondary: #f472b6;
+      --secondary-light: #f9a8d4;
+      --secondary-dark: #ec4899;
+      --secondary-bg: #831843;
+      --success: #34d399;
+      --success-bg: #064e3b;
+      --error: #f87171;
+      --error-bg: #7f1d1d;
+      --warning: #fbbf24;
+      --warning-bg: #78350f;
+      --bg-primary: #1e293b;
+      --bg-secondary: #0f172a;
+      --bg-tertiary: #020617;
+      --text-primary: #f8fafc;
+      --text-secondary: #cbd5e1;
+      --text-tertiary: #94a3b8;
+      --border: #334155;
+      --border-light: #1e293b;
+      --shadow-sm: 0 1px 2px rgba(0,0,0,0.3);
+      --shadow: 0 4px 6px -1px rgba(0,0,0,0.4), 0 2px 4px -2px rgba(0,0,0,0.4);
+      --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.4), 0 4px 6px -4px rgba(0,0,0,0.4);
+    }
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+    background:linear-gradient(135deg,var(--bg-secondary) 0%,var(--bg-tertiary) 100%);
+    color:var(--text-primary);
+    font-size:16px;
+    line-height:1.5;
+    min-height:100vh;
+    -webkit-font-smoothing:antialiased;
+  }
+  .container{
+    max-width:480px;
+    margin:0 auto;
+    padding:20px 16px 100px;
+  }
+  .hdr{
+    background:linear-gradient(135deg,var(--primary) 0%,var(--primary-dark) 100%);
+    border-radius:var(--radius-xl);
+    padding:24px 20px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+    box-shadow:var(--shadow-lg);
+    margin-bottom:24px;
+  }
+  .hdr-ico{
+    width:56px;
+    height:56px;
+    border-radius:var(--radius);
+    background:rgba(255,255,255,0.2);
+    backdrop-filter:blur(10px);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#fff;
+    box-shadow:var(--shadow);
+  }
+  .hdr-ico i{font-size:28px;}
+  .hdr-ttl{
+    font-size:20px;
+    font-weight:700;
+    color:#fff;
+    letter-spacing:-0.5px;
+  }
+  .hdr-sub{
+    font-size:13px;
+    color:rgba(255,255,255,0.85);
+    margin-top:2px;
+    font-weight:500;
+  }
+  .sec{
+    font-size:12px;
+    font-weight:600;
+    color:var(--text-secondary);
+    text-transform:uppercase;
+    letter-spacing:1px;
+    margin-bottom:12px;
+    padding-left:4px;
+  }
+  .card{
+    background:var(--bg-primary);
+    border-radius:var(--radius-lg);
+    border:1px solid var(--border);
+    padding:20px;
+    box-shadow:var(--shadow);
+    margin-bottom:20px;
+  }
+  .fg{margin-bottom:16px;}
+  .fg label{
+    display:block;
+    font-size:13px;
+    font-weight:600;
+    color:var(--text-primary);
+    margin-bottom:8px;
+  }
+  .fg textarea{
+    width:100%;
+    padding:14px 16px;
+    border-radius:var(--radius);
+    border:2px solid var(--border);
+    background:var(--bg-secondary);
+    color:var(--text-primary);
+    font-size:14px;
+    font-family:'Monaco','Consolas','Courier New',monospace;
+    outline:none;
+    transition:all 0.2s ease;
+    font-weight:500;
+    min-height:120px;
+    resize:vertical;
+  }
+  .fg textarea:focus{
+    border-color:var(--primary);
+    box-shadow:0 0 0 4px rgba(99,102,241,0.15);
+    background:var(--bg-primary);
+  }
+  .fg textarea::placeholder{
+    color:var(--text-tertiary);
+    font-weight:400;
+    font-family:'Inter',system-ui,sans-serif;
+  }
+  .btn-submit{
+    width:100%;
+    padding:16px;
+    border:none;
+    border-radius:var(--radius);
+    background:linear-gradient(135deg,var(--primary) 0%,var(--primary-dark) 100%);
+    color:#fff;
+    font-size:15px;
+    font-weight:600;
+    cursor:pointer;
+    font-family:inherit;
+    transition:all 0.2s ease;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    box-shadow:var(--shadow);
+    margin-top:8px;
+  }
+  .btn-submit:hover{
+    transform:translateY(-2px);
+    box-shadow:var(--shadow-lg);
+  }
+  .btn-submit:active{
+    transform:translateY(0);
+  }
+  .btn-submit i{font-size:20px;}
+  .stats{
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    gap:12px;
+    margin-bottom:20px;
+  }
+  @media(max-width:380px){
+    .stats{grid-template-columns:1fr;}
+  }
+  .stat{
+    background:var(--bg-primary);
+    border-radius:var(--radius-lg);
+    padding:20px 16px;
+    text-align:center;
+    border:1px solid var(--border);
+    box-shadow:var(--shadow);
+    transition:all 0.2s ease;
+  }
+  .stat:hover{
+    transform:translateY(-4px);
+    box-shadow:var(--shadow-lg);
+  }
+  .stat-n{
+    font-size:28px;
+    font-weight:700;
+    line-height:1;
+  }
+  .stat-n.t{color:var(--primary);}
+  .stat-n.d1{color:var(--primary);}
+  .stat-n.d2{color:var(--secondary);}
+  .stat-l{
+    font-size:11px;
+    color:var(--text-secondary);
+    text-transform:uppercase;
+    letter-spacing:1px;
+    margin-top:8px;
+    font-weight:600;
+  }
+  .stat-n.ok{color:var(--success);}
+  .res-card{
+    border-radius:var(--radius-lg);
+    border:1px solid var(--border);
+    padding:24px 20px;
+    text-align:center;
+    margin-bottom:16px;
+    background:var(--bg-primary);
+    box-shadow:var(--shadow);
+    animation:fadeInUp 0.3s ease;
+    display:none;
+  }
+  @keyframes fadeInUp{
+    from{opacity:0;transform:translateY(20px);}
+    to{opacity:1;transform:translateY(0);}
+  }
+  .res-card.show{display:block;}
+  .res-ico{
+    width:64px;
+    height:64px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin:0 auto 16px;
+    box-shadow:var(--shadow);
+  }
+  .res-ico i{font-size:32px;}
+  .res-ico.ok{
+    background:var(--success-bg);
+    color:var(--success);
+  }
+  .res-ico.err{
+    background:var(--error-bg);
+    color:var(--error);
+  }
+  .res-ico.warn{
+    background:var(--warning-bg);
+    color:var(--warning);
+  }
+  .res-ttl{
+    font-size:20px;
+    font-weight:700;
+    margin-bottom:4px;
+  }
+  .res-ttl.ok{color:var(--success);}
+  .res-ttl.err{color:var(--error);}
+  .res-ttl.warn{color:var(--warning);}
+  .res-sub{
+    font-size:14px;
+    color:var(--text-secondary);
+    margin-bottom:16px;
+    font-weight:500;
+  }
+  .res-info{
+    background:var(--bg-secondary);
+    border-radius:var(--radius);
+    padding:16px;
+    text-align:left;
+    border:1px solid var(--border);
+  }
+  .ri{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:10px 0;
+    border-bottom:1px solid var(--border-light);
+  }
+  .ri:last-child{border-bottom:none;}
+  .ri-k{
+    font-size:13px;
+    color:var(--text-secondary);
+    font-weight:500;
+  }
+  .ri-v{
+    font-size:14px;
+    font-weight:600;
+    color:var(--text-primary);
+  }
+  .dpill{
+    padding:4px 12px;
+    border-radius:20px;
+    font-size:11px;
+    font-weight:600;
+  }
+  .dpill.d1{
+    background:var(--primary-bg);
+    color:var(--primary-dark);
+  }
+  .dpill.d2{
+    background:var(--secondary-bg);
+    color:var(--secondary-dark);
+  }
+  .btn-clear{
+    padding:8px 16px;
+    border-radius:var(--radius);
+    border:2px solid var(--border);
+    background:var(--bg-primary);
+    color:var(--text-secondary);
+    font-size:13px;
+    font-weight:600;
+    cursor:pointer;
+    font-family:inherit;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    transition:all 0.2s ease;
+  }
+  .btn-clear i{font-size:16px;}
+  .btn-clear:hover{
+    background:var(--bg-secondary);
+    border-color:var(--border);
+  }
+  .btn-clear.conf{
+    background:var(--error);
+    border-color:var(--error);
+    color:#fff;
+  }
+  .btn-clear.conf:hover{
+    background:#dc2626;
+    border-color:#dc2626;
+  }
+  .rec-hdr{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:16px;
+  }
+  .rc{
+    background:var(--bg-primary);
+    border-radius:var(--radius-lg);
+    border:1px solid var(--border);
+    padding:16px;
+    margin-bottom:12px;
+    box-shadow:var(--shadow-sm);
+    transition:all 0.2s ease;
+  }
+  .rc:hover{
+    transform:translateY(-2px);
+    box-shadow:var(--shadow);
+  }
+  .rc-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    margin-bottom:12px;
+  }
+  .rc-nm{
+    font-size:15px;
+    font-weight:600;
+    color:var(--text-primary);
+  }
+  .rc-rl{
+    font-size:13px;
+    color:var(--text-secondary);
+    font-weight:500;
+    margin-top:2px;
+  }
+  .rc-bs{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+    align-items:flex-end;
+  }
+  .rbadge{
+    font-size:10px;
+    font-weight:600;
+    padding:4px 10px;
+    border-radius:20px;
+    white-space:nowrap;
+  }
+  .rbadge.ok{
+    background:var(--success-bg);
+    color:var(--success);
+  }
+  .rbadge.pend{
+    background:var(--bg-secondary);
+    color:var(--text-secondary);
+    border:1px solid var(--border);
+  }
+  .rc-chips{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-top:12px;
+  }
+  .chip{
+    font-size:11px;
+    padding:6px 12px;
+    background:var(--bg-secondary);
+    border-radius:20px;
+    color:var(--text-secondary);
+    border:1px solid var(--border);
+    display:flex;
+    align-items:center;
+    gap:6px;
+    font-weight:500;
+  }
+  .chip i{font-size:14px;}
+  .empty{
+    text-align:center;
+    padding:60px 20px;
+    color:var(--text-secondary);
+  }
+  .empty i{
+    font-size:48px;
+    display:block;
+    margin-bottom:16px;
+    color:var(--text-tertiary);
+  }
+  .empty p{
+    font-size:14px;
+    font-weight:500;
+  }
+  .toast{
+    position:fixed;
+    bottom:30px;
+    left:50%;
+    transform:translateX(-50%) translateY(20px);
+    background:var(--bg-primary);
+    border:1px solid var(--border);
+    color:var(--text-primary);
+    border-radius:var(--radius-lg);
+    padding:14px 24px;
+    font-size:14px;
+    font-weight:600;
+    white-space:nowrap;
+    opacity:0;
+    transition:all 0.3s ease;
+    pointer-events:none;
+    z-index:1000;
+    box-shadow:var(--shadow-lg);
+  }
+  .toast.on{
+    opacity:1;
+    transform:translateX(-50%) translateY(0);
+  }
+  </style>
+</head>
+<body>
 
 <h2 class="sr-only" style="position:absolute;left:-9999px">Manual QR Entry — Paste JSON data to record attendance</h2>
 
 <div class="container">
 
-<div class="hdr">
-  <div class="hdr-ico"><i class="ti ti-keyboard" aria-hidden="true"></i></div>
-  <div><div class="hdr-ttl">Manual Entry</div><div class="hdr-sub">SST Farewell — Paste QR Data</div></div>
-</div>
-
-<div class="stats" id="stats-bar">
-  <div class="stat"><div class="stat-n t" id="s-tot">0</div><div class="stat-l">Total</div></div>
-  <div class="stat"><div class="stat-n d1" id="s-d1">0</div><div class="stat-l">Day 1 in</div></div>
-  <div class="stat"><div class="stat-n d2" id="s-d2">0</div><div class="stat-l">Day 2 in</div></div>
-</div>
-
-<div class="sec">Paste QR data</div>
-<div class="card">
-  <div class="fg">
-    <label>JSON Data</label>
-    <textarea id="json-input" placeholder='Paste QR code JSON data here, e.g.:
-{"ev":"SST_FW26","uid":"MQTB3WDZ60OPI","day":1,"rn":"123","nm":"123","ph":"123","bt":"123","dg":"123"}'></textarea>
+  <div class="hdr">
+    <div class="hdr-ico"><i class="ti ti-keyboard" aria-hidden="true"></i></div>
+    <div><div class="hdr-ttl">Manual Entry</div><div class="hdr-sub">SST Farewell — Paste QR Data</div></div>
   </div>
-  <button class="btn-submit" onclick="processEntry()"><i class="ti ti-check" aria-hidden="true"></i> Process Entry</button>
+
+  <div class="stats" id="stats-bar">
+    <div class="stat"><div class="stat-n t" id="s-tot">0</div><div class="stat-l">Total</div></div>
+    <div class="stat"><div class="stat-n d1" id="s-d1">0</div><div class="stat-l">Day 1 in</div></div>
+    <div class="stat"><div class="stat-n d2" id="s-d2">0</div><div class="stat-l">Day 2 in</div></div>
+  </div>
+
+  <div class="sec">Paste QR data</div>
+  <div class="card">
+    <div class="fg">
+      <label>JSON Data</label>
+      <textarea id="json-input" placeholder='Paste QR code JSON data here, e.g.:
+{"ev":"SST_FW26","uid":"MQTB3WDZ60OPI","day":1,"rn":"123","nm":"123","ph":"123","bt":"123","dg":"123"}'></textarea>
+    </div>
+    <button class="btn-submit" onclick="processEntry()"><i class="ti ti-check" aria-hidden="true"></i> Process Entry</button>
+  </div>
+
+  <div class="res-card" id="res-card">
+    <div class="res-ico" id="res-ico"></div>
+    <div class="res-ttl" id="res-ttl"></div>
+    <div class="res-sub" id="res-sub"></div>
+    <div class="res-info" id="res-info"></div>
+  </div>
+
+  <div class="rec-hdr">
+    <div class="sec" style="margin-bottom:0">Records</div>
+    <button class="btn-clear" id="btn-cl" onclick="doClear()"><i class="ti ti-trash" aria-hidden="true"></i><span id="cl-lbl">Clear Scans</span></button>
+  </div>
+  <div id="rec-list"></div>
+
+  <div class="toast" id="toast"></div>
 </div>
 
-<div class="res-card" id="res-card">
-  <div class="res-ico" id="res-ico"></div>
-  <div class="res-ttl" id="res-ttl"></div>
-  <div class="res-sub" id="res-sub"></div>
-  <div class="res-info" id="res-info"></div>
-</div>
-
-<div class="rec-hdr"><div class="sec" style="margin-bottom:0">Records</div><button class="btn-clear" id="btn-cl" onclick="doClear()"><i class="ti ti-trash" aria-hidden="true"></i><span id="cl-lbl">Clear all</span></button></div>
-<div id="rec-list"></div>
-
-<div class="toast" id="toast"></div>
-</div>
-
+<!-- Supabase JS Client CDN -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-var clrPend=false,clrTimer=null;
+const SUPABASE_URL = "https://fjraxqxxdabyumnyosvh.supabase.co";
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZqcmF4cXh4ZGFieXVtbnlvc3ZoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIzNzY2MTAsImV4cCI6MjA5Nzk1MjYxMH0.e5ypJJbEL6YxdTqhsqzJ5_Z7mfdQivxvZgSeCyxlbXk";
+
+const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+var clrPend = false, clrTimer = null;
 
 function esc(s){return String(s||'').replace(/[<>&"']/g,function(c){return{'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;',"'":'&#39;'}[c];});}
 function toast(m){var t=document.getElementById('toast');t.textContent=m;t.classList.add('on');setTimeout(function(){t.classList.remove('on');},2400);}
 
-async function sget(k){try{var r=await window.storage.get(k);return r?JSON.parse(r.value):null;}catch(e){return null;}}
-async function sset(k,v){try{await window.storage.set(k,JSON.stringify(v));}catch(e){}}
-async function sdel(k){try{await window.storage.delete(k);}catch(e){}}
-
 async function processEntry(){
-  var input=document.getElementById('json-input').value.trim();
+  var input = document.getElementById('json-input').value.trim();
   if(!input){toast('Please paste JSON data');return;}
   
   var d;
@@ -532,25 +548,61 @@ async function processEntry(){
     showRes('warn',null,null,'Missing required fields');
     return;
   }
-  
-  var key='evt_sc_'+d.uid+'_d'+d.day;
-  var prev=await sget(key);
-  
-  if(prev){
-    showRes('err',d,prev,'Already inside the event');
-  }else{
-    var rec={at:new Date().toISOString(),...d};
-    await sset(key,rec);
-    var list=await sget('evt_scan_cands')||[];
-    var found=list.find(function(c){return c.uid===d.uid;});
-    if(!found){
-      list.push({uid:d.uid,rn:d.rn,nm:d.nm,ph:d.ph||'',bt:d.bt||'',dg:d.dg||'',ca:new Date().toISOString()});
-      await sset('evt_scan_cands',list);
+
+  try {
+    // 1. Check if scan already exists for this exact uid and day
+    const { data: existingScan, error: checkError } = await _supabase
+      .from('scans')
+      .select('scanned_at')
+      .eq('uid', d.uid)
+      .eq('day', d.day)
+      .maybeSingle();
+
+    if (checkError) throw checkError;
+
+    if (existingScan) {
+      showRes('err', d, { at: existingScan.scanned_at }, 'Already inside the event');
+      return;
     }
-    showRes('ok',d,null,'Entry accepted');
-    document.getElementById('json-input').value='';
-    loadStats();
-    loadRec();
+
+    // 2. Upsert candidate profile info so registration database updates gracefully
+    const { error: candError } = await _supabase
+      .from('candidates')
+      .upsert({
+        uid: d.uid,
+        roll_no: d.rn,
+        name: d.nm,
+        phone: d.ph || null,
+        batch: d.bt || null,
+        degree: d.dg || null
+      }, { onConflict: 'uid' });
+
+    if (candError) throw candError;
+
+    // 3. Add to daily scans log
+    const { error: scanError } = await _supabase
+      .from('scans')
+      .insert({
+        uid: d.uid,
+        day: parseInt(d.day),
+        roll_no: d.rn,
+        name: d.nm,
+        phone: d.ph || null,
+        batch: d.bt || null,
+        degree: d.dg || null
+      });
+
+    if (scanError) throw scanError;
+
+    showRes('ok', d, null, 'Entry accepted successfully');
+    document.getElementById('json-input').value = '';
+    
+    // Refresh synchronized structural UI elements
+    await loadDashboardData();
+
+  } catch (err) {
+    console.error(err);
+    showRes('warn', null, null, err.message || 'Database transaction error');
   }
 }
 
@@ -609,50 +661,104 @@ function buildInfo(d,prev){
 
 function row(k,v){return '<div class="ri"><span class="ri-k">'+k+'</span><span class="ri-v">'+v+'</span></div>';}
 
-async function loadStats(){
-  var list=await sget('evt_scan_cands')||[];
-  document.getElementById('s-tot').textContent=list.length;
-  var d1=0,d2=0;
-  for(var i=0;i<list.length;i++){
-    var c=list[i];
-    var s1=await sget('evt_sc_'+c.uid+'_d1');
-    var s2=await sget('evt_sc_'+c.uid+'_d2');
-    if(s1)d1++;
-    if(s2)d2++;
-  }
-  document.getElementById('s-d1').textContent=d1;
-  document.getElementById('s-d2').textContent=d2;
-}
+async function loadDashboardData() {
+  try {
+    // Fetch unique candidates profile pool
+    const { data: candidates, error: cErr } = await _supabase
+      .from('candidates')
+      .select('*')
+      .order('created_at', { ascending: false });
+      
+    if (cErr) throw cErr;
 
-async function loadRec(){
-  var list=await sget('evt_scan_cands')||[];
-  var rows=[];
-  for(var i=0;i<list.length;i++){
-    var c=list[i];
-    var s1=await sget('evt_sc_'+c.uid+'_d1');
-    var s2=await sget('evt_sc_'+c.uid+'_d2');
-    rows.push('<div class="rc"><div class="rc-top"><div><div class="rc-nm">'+esc(c.nm)+'</div><div class="rc-rl">'+esc(c.rn)+'</div></div><div class="rc-bs"><span class="rbadge '+(s1?'ok':'pend')+'">D1 '+(s1?'✓ In':'⏳ Pending')+'</span><span class="rbadge '+(s2?'ok':'pend')+'">D2 '+(s2?'✓ In':'⏳ Pending')+'</span></div></div><div class="rc-chips">'+(c.ph?'<span class="chip"><i class="ti ti-phone" aria-hidden="true"></i>'+esc(c.ph)+'</span>':'')+(c.bt?'<span class="chip"><i class="ti ti-school" aria-hidden="true"></i>'+esc(c.bt)+'</span>':'')+(c.dg?'<span class="chip"><i class="ti ti-certificate" aria-hidden="true"></i>'+esc(c.dg)+'</span>':'')+'</div></div>');
+    // Fetch master scan records to compute individual badges
+    const { data: scans, error: sErr } = await _supabase
+      .from('scans')
+      .select('uid, day');
+
+    if (sErr) throw sErr;
+
+    // Update statistics counters
+    document.getElementById('s-tot').textContent = candidates.length;
+    let d1 = scans.filter(s => s.day === 1).length;
+    let d2 = scans.filter(s => s.day === 2).length;
+    document.getElementById('s-d1').textContent = d1;
+    document.getElementById('s-d2').textContent = d2;
+
+    // Build operational UI items list safely
+    var rows = [];
+    for (var i = 0; i < candidates.length; i++) {
+      var c = candidates[i];
+      var hasD1 = scans.some(s => s.uid === c.uid && s.day === 1);
+      var hasD2 = scans.some(s => s.uid === c.uid && s.day === 2);
+
+      rows.push(
+        '<div class="rc">' +
+          '<div class="rc-top">' +
+            '<div>' +
+              '<div class="rc-nm">' + esc(c.name) + '</div>' +
+              '<div class="rc-rl">' + esc(c.roll_no) + '</div>' +
+            '</div>' +
+            '<div class="rc-bs">' +
+              '<span class="rbadge ' + (hasD1 ? 'ok' : 'pend') + '">D1 ' + (hasD1 ? '✓ In' : '⏳ Pending') + '</span>' +
+              '<span class="rbadge ' + (hasD2 ? 'ok' : 'pend') + '">D2 ' + (hasD2 ? '✓ In' : '⏳ Pending') + '</span>' +
+            '</div>' +
+          '</div>' +
+          '<div class="rc-chips">' +
+            (c.phone ? '<span class="chip"><i class="ti ti-phone" aria-hidden="true"></i>' + esc(c.phone) + '</span>' : '') +
+            (c.batch ? '<span class="chip"><i class="ti ti-school" aria-hidden="true"></i>' + esc(c.batch) + '</span>' : '') +
+            (c.degree ? '<span class="chip"><i class="ti ti-certificate" aria-hidden="true"></i>' + esc(c.degree) + '</span>' : '') +
+          '</div>' +
+        '</div>'
+      );
+    }
+
+    document.getElementById('rec-list').innerHTML = candidates.length 
+      ? rows.join('') 
+      : '<div class="empty"><i class="ti ti-keyboard" aria-hidden="true"></i><p>No records yet. Paste QR data to add entries.</p></div>';
+
+  } catch (err) {
+    console.error("Dashboard execution error:", err);
+    toast("Failed to pull live record sets");
   }
-  document.getElementById('rec-list').innerHTML=list.length?rows.join(''):'<div class="empty"><i class="ti ti-keyboard" aria-hidden="true"></i><p>No records yet. Paste QR data to add entries.</p></div>';
 }
 
 async function doClear(){
   if(!clrPend){
     clrPend=true;
-    document.getElementById('cl-lbl').textContent='Confirm clear?';
+    document.getElementById('cl-lbl').textContent='Confirm wipe?';
     document.getElementById('btn-cl').classList.add('conf');
-    clrTimer=setTimeout(function(){clrPend=false;document.getElementById('cl-lbl').textContent='Clear all';document.getElementById('btn-cl').classList.remove('conf');},3500);
+    clrTimer=setTimeout(function(){
+      clrPend=false;
+      document.getElementById('cl-lbl').textContent='Clear Scans';
+      document.getElementById('btn-cl').classList.remove('conf');
+    },3500);
   }else{
-    clearTimeout(clrTimer);clrPend=false;
-    document.getElementById('cl-lbl').textContent='Clear all';
+    clearTimeout(clrTimer);
+    clrPend=false;
+    document.getElementById('cl-lbl').textContent='Clear Scans';
     document.getElementById('btn-cl').classList.remove('conf');
-    var list=await sget('evt_scan_cands')||[];
-    for(var i=0;i<list.length;i++){await sdel('evt_sc_'+list[i].uid+'_d1');await sdel('evt_sc_'+list[i].uid+'_d2');}
-    await sdel('evt_scan_cands');
-    toast('All records cleared');loadStats();loadRec();
+    
+    try {
+      // Clean up both transactional tables inside your relational space
+      const { error: err1 } = await _supabase.from('scans').delete().neq('uid', '_block_bypass_val_');
+      const { error: err2 } = await _supabase.from('candidates').delete().neq('uid', '_block_bypass_val_');
+      
+      if(err1 || err2) throw (err1 || err2);
+
+      toast('All live database entries dropped');
+      await loadDashboardData();
+    } catch(e) {
+      console.error(e);
+      toast('Clear execution dropped via policy rules');
+    }
   }
 }
 
-loadStats();
-loadRec();
+// Global initialization run loop
+window.addEventListener('DOMContentLoaded', () => {
+  loadDashboardData();
+});
 </script>
+</body>
+</html>
