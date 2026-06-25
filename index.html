@@ -134,7 +134,7 @@ body{font-family:'Inter',system-ui,sans-serif;background:var(--color-background-
         <li>Point camera at attendee's QR code</li>
         <li>Each ticket can only be scanned once</li>
         <li>Day 1 and Day 2 are separate tickets</li>
-        <li>Already-used tickets show the original scan time</li>
+        <li>Already-used tickets show "already entered"</li>
       </ul>
     </div>
   </div>
@@ -183,7 +183,7 @@ async function camStart(){
     document.getElementById('bs-stop').style.display='flex';
     scanning=true;lastRaw=null;
     sid=setInterval(scanFrame,180);
-  }catch(e){toast('Camera unavailable or permission denied');}
+  }catch(e){toast('Camera unavailable or permission denied');console.error(e);}
 }
 
 function camStop(){
@@ -204,17 +204,38 @@ function scanFrame(){
   c.getContext('2d').drawImage(v,0,0,c.width,c.height);
   var img=c.getContext('2d').getImageData(0,0,c.width,c.height);
   var code=jsQR(img.data,img.width,img.height,{inversionAttempts:'dontInvert'});
-  if(code&&code.data&&code.data!==lastRaw){lastRaw=code.data;clearInterval(sid);scanning=false;handleQR(code.data);}
+  if(code&&code.data&&code.data!==lastRaw){
+    lastRaw=code.data;
+    console.log('QR Code detected:', code.data);
+    clearInterval(sid);
+    scanning=false;
+    handleQR(code.data);
+  }
 }
 
 async function handleQR(raw){
   var d;
-  try{d=JSON.parse(raw);}catch(e){showRes('warn',null,null);return;}
-  if(d.ev!=='SST_FW26'){showRes('warn',null,null);return;}
+  try{
+    d=JSON.parse(raw);
+    console.log('Parsed QR data:', d);
+  }catch(e){
+    console.error('Failed to parse QR:', e);
+    showRes('warn',null,null);
+    return;
+  }
+  if(!d||d.ev!=='SST_FW26'){
+    console.log('Invalid event code:', d?d.ev:'no data');
+    showRes('warn',null,null);
+    return;
+  }
   var key='evt_sc_'+d.uid+'_d'+d.day;
+  console.log('Checking scan key:', key);
   var prev=await sget(key);
-  if(prev){showRes('err',d,prev);}
-  else{
+  if(prev){
+    console.log('Already scanned:', prev);
+    showRes('err',d,prev);
+  }else{
+    console.log('New scan, recording...');
     var rec={at:new Date().toISOString(),...d};
     await sset(key,rec);
     var list=await sget('evt_scan_cands')||[];
@@ -233,17 +254,17 @@ function showRes(type,d,prev){
   var ico='',ttl='',sub='',info='';
   if(type==='ok'){
     ico='<div class="res-ico ok"><i class="ti ti-circle-check" aria-hidden="true"></i></div>';
-    ttl='<div class="res-ttl ok">Access granted</div>';
-    sub='<div class="res-sub">Valid Day '+d.day+' ticket — entry recorded</div>';
+    ttl='<div class="res-ttl ok">Entry Successful</div>';
+    sub='<div class="res-sub">Valid Day '+d.day+' ticket — attendance recorded</div>';
     info=buildInfo(d,null);
   }else if(type==='err'){
     ico='<div class="res-ico err"><i class="ti ti-circle-x" aria-hidden="true"></i></div>';
-    ttl='<div class="res-ttl err">Already used</div>';
+    ttl='<div class="res-ttl err">Already Entered</div>';
     sub='<div class="res-sub">This Day '+d.day+' ticket was already scanned</div>';
     info=buildInfo(d,prev);
   }else{
     ico='<div class="res-ico warn"><i class="ti ti-alert-circle" aria-hidden="true"></i></div>';
-    ttl='<div class="res-ttl warn">Invalid QR code</div>';
+    ttl='<div class="res-ttl warn">Invalid QR Code</div>';
     sub='<div class="res-sub">This QR is not valid for this event</div>';
     info='';
   }
@@ -260,7 +281,7 @@ function buildInfo(d,prev){
   if(prev&&prev.at){
     var t=new Date(prev.at);
     var ts=t.toLocaleDateString('en-PK',{day:'2-digit',month:'short'})+' '+t.toLocaleTimeString('en-PK',{hour:'2-digit',minute:'2-digit'});
-    rows.push('<div class="ri" style="border-top:0.5px solid var(--err)"><span class="ri-k" style="color:var(--err)">First scanned</span><span class="ri-v" style="color:var(--err);font-size:12px">'+ts+'</span></div>');
+    rows.push('<div class="ri" style="border-top:0.5px solid var(--err)"><span class="ri-k" style="color:var(--err)">First entered</span><span class="ri-v" style="color:var(--err);font-size:12px">'+ts+'</span></div>');
   }
   return rows.join('');
 }
