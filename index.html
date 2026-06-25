@@ -1,6 +1,5 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jsQR/1.4.0/jsQR.min.js"></script>
 <style>
 :root{
   --primary: #6366f1;
@@ -78,7 +77,7 @@ body{
   padding:20px 16px 100px;
 }
 .hdr{
-  background:linear-gradient(135deg,var(--secondary) 0%,var(--secondary-dark) 100%);
+  background:linear-gradient(135deg,var(--primary) 0%,var(--primary-dark) 100%);
   border-radius:var(--radius-xl);
   padding:24px 20px;
   display:flex;
@@ -112,41 +111,6 @@ body{
   margin-top:2px;
   font-weight:500;
 }
-.tabs{
-  display:flex;
-  background:var(--bg-primary);
-  border-radius:var(--radius-lg);
-  padding:6px;
-  margin-bottom:20px;
-  box-shadow:var(--shadow);
-  border:1px solid var(--border);
-}
-.tab{
-  flex:1;
-  padding:12px 8px;
-  text-align:center;
-  font-size:13px;
-  font-weight:600;
-  color:var(--text-secondary);
-  cursor:pointer;
-  border:none;
-  background:none;
-  border-radius:var(--radius);
-  transition:all 0.2s ease;
-  white-space:nowrap;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:6px;
-}
-.tab.on{
-  background:linear-gradient(135deg,var(--secondary) 0%,var(--secondary-dark) 100%);
-  color:#fff;
-  box-shadow:var(--shadow-sm);
-}
-.tab i{font-size:18px;}
-.panel{display:none;padding:0;}
-.panel.on{display:block;}
 .sec{
   font-size:12px;
   font-weight:600;
@@ -156,141 +120,113 @@ body{
   margin-bottom:12px;
   padding-left:4px;
 }
-.cam-box{
+.card{
+  background:var(--bg-primary);
   border-radius:var(--radius-lg);
-  overflow:hidden;
-  background:#000;
-  aspect-ratio:4/3;
-  position:relative;
-  margin-bottom:16px;
-  box-shadow:var(--shadow-lg);
-  border:2px solid var(--border);
+  border:1px solid var(--border);
+  padding:20px;
+  box-shadow:var(--shadow);
+  margin-bottom:20px;
 }
-#video{width:100%;height:100%;object-fit:cover;display:block;}
-#canvas{display:none;}
-.cam-ph{
-  position:absolute;
-  inset:0;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  gap:12px;
-  background:var(--bg-secondary);
+.fg{margin-bottom:16px;}
+.fg label{
+  display:block;
+  font-size:13px;
+  font-weight:600;
+  color:var(--text-primary);
+  margin-bottom:8px;
 }
-.cam-ph i{font-size:48px;color:var(--text-tertiary);}
-.cam-ph p{font-size:14px;color:var(--text-secondary);font-weight:500;}
-.sf{
-  position:absolute;
-  inset:0;
-  display:none;
-  align-items:center;
-  justify-content:center;
-  pointer-events:none;
-}
-.sf.on{display:flex;}
-.sfc{width:180px;height:180px;position:relative;}
-.scc{
-  position:absolute;
-  width:24px;
-  height:24px;
-  border-color:#fff;
-  border-style:solid;
-  box-shadow:0 0 0 2px rgba(236,72,153,0.3);
-}
-.sc-tl{top:0;left:0;border-width:3px 0 0 3px;border-radius:4px 0 0 0;}
-.sc-tr{top:0;right:0;border-width:3px 3px 0 0;border-radius:0 4px 0 0;}
-.sc-bl{bottom:0;left:0;border-width:0 0 3px 3px;border-radius:0 0 0 4px;}
-.sc-br{bottom:0;right:0;border-width:0 3px 3px 0;border-radius:0 0 4px 0;}
-.sl{
-  position:absolute;
-  left:0;
-  right:0;
-  height:2px;
-  background:linear-gradient(90deg,transparent,var(--secondary),transparent);
-  animation:scan 2s ease-in-out infinite;
-  box-shadow:0 0 10px var(--secondary);
-}
-@keyframes scan{0%,100%{top:0}50%{top:100%}}
-.scan-btns{display:flex;gap:12px;margin-bottom:16px;}
-.btn-scan{
-  flex:1;
-  padding:14px;
+.fg textarea{
+  width:100%;
+  padding:14px 16px;
   border-radius:var(--radius);
+  border:2px solid var(--border);
+  background:var(--bg-secondary);
+  color:var(--text-primary);
   font-size:14px;
+  font-family:'Monaco','Consolas','Courier New',monospace;
+  outline:none;
+  transition:all 0.2s ease;
+  font-weight:500;
+  min-height:120px;
+  resize:vertical;
+}
+.fg textarea:focus{
+  border-color:var(--primary);
+  box-shadow:0 0 0 4px rgba(99,102,241,0.15);
+  background:var(--bg-primary);
+}
+.fg textarea::placeholder{
+  color:var(--text-tertiary);
+  font-weight:400;
+  font-family:'Inter',system-ui,sans-serif;
+}
+.btn-submit{
+  width:100%;
+  padding:16px;
+  border:none;
+  border-radius:var(--radius);
+  background:linear-gradient(135deg,var(--primary) 0%,var(--primary-dark) 100%);
+  color:#fff;
+  font-size:15px;
   font-weight:600;
   cursor:pointer;
   font-family:inherit;
-  border:2px solid;
   transition:all 0.2s ease;
   display:flex;
   align-items:center;
   justify-content:center;
-  gap:8px;
-}
-.btn-scan i{font-size:18px;}
-.btn-scan.start{
-  background:var(--success);
-  border-color:var(--success);
-  color:#fff;
+  gap:10px;
   box-shadow:var(--shadow);
+  margin-top:8px;
 }
-.btn-scan.start:hover{
-  background:#059669;
-  border-color:#059669;
+.btn-submit:hover{
   transform:translateY(-2px);
   box-shadow:var(--shadow-lg);
 }
-.btn-scan.stop{
-  background:var(--error);
-  border-color:var(--error);
-  color:#fff;
-  display:none;
-  box-shadow:var(--shadow);
+.btn-submit:active{
+  transform:translateY(0);
 }
-.btn-scan.stop:hover{
-  background:#dc2626;
-  border-color:#dc2626;
-  transform:translateY(-2px);
-  box-shadow:var(--shadow-lg);
+.btn-submit i{font-size:20px;}
+.stats{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:12px;
+  margin-bottom:20px;
 }
-.instr{
+@media(max-width:380px){
+  .stats{grid-template-columns:1fr;}
+}
+.stat{
   background:var(--bg-primary);
   border-radius:var(--radius-lg);
-  padding:16px 20px;
+  padding:20px 16px;
+  text-align:center;
   border:1px solid var(--border);
-  box-shadow:var(--shadow-sm);
+  box-shadow:var(--shadow);
+  transition:all 0.2s ease;
 }
-.instr-ttl{
-  font-size:12px;
-  font-weight:600;
+.stat:hover{
+  transform:translateY(-4px);
+  box-shadow:var(--shadow-lg);
+}
+.stat-n{
+  font-size:28px;
+  font-weight:700;
+  line-height:1;
+}
+.stat-n.t{color:var(--primary);}
+.stat-n.d1{color:var(--primary);}
+.stat-n.d2{color:var(--secondary);}
+.stat-l{
+  font-size:11px;
   color:var(--text-secondary);
   text-transform:uppercase;
   letter-spacing:1px;
-  margin-bottom:12px;
-  display:flex;
-  align-items:center;
-  gap:8px;
+  margin-top:8px;
+  font-weight:600;
 }
-.instr-ttl i{font-size:16px;}
-.instr li{
-  font-size:14px;
-  color:var(--text-secondary);
-  list-style:none;
-  padding:6px 0;
-  display:flex;
-  align-items:flex-start;
-  gap:10px;
-  line-height:1.4;
-}
-.instr li::before{
-  content:"•";
-  color:var(--secondary);
-  flex-shrink:0;
-  margin-top:2px;
-  font-size:18px;
-  font-weight:700;
-}
+.stat-n.ok{color:var(--success);}
 .res-card{
   border-radius:var(--radius-lg);
   border:1px solid var(--border);
@@ -300,11 +236,13 @@ body{
   background:var(--bg-primary);
   box-shadow:var(--shadow);
   animation:fadeInUp 0.3s ease;
+  display:none;
 }
 @keyframes fadeInUp{
   from{opacity:0;transform:translateY(20px);}
   to{opacity:1;transform:translateY(0);}
 }
+.res-card.show{display:block;}
 .res-ico{
   width:64px;
   height:64px;
@@ -381,76 +319,6 @@ body{
   background:var(--secondary-bg);
   color:var(--secondary-dark);
 }
-.btn-next{
-  width:100%;
-  padding:14px;
-  border-radius:var(--radius);
-  border:2px solid var(--border);
-  background:var(--bg-primary);
-  color:var(--text-primary);
-  font-size:14px;
-  font-weight:600;
-  cursor:pointer;
-  font-family:inherit;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:10px;
-  transition:all 0.2s ease;
-  box-shadow:var(--shadow-sm);
-}
-.btn-next i{font-size:18px;}
-.btn-next:hover{
-  background:var(--bg-secondary);
-  border-color:var(--border);
-  transform:translateY(-2px);
-  box-shadow:var(--shadow);
-}
-.stats{
-  display:grid;
-  grid-template-columns:1fr 1fr 1fr;
-  gap:12px;
-  margin-bottom:20px;
-}
-@media(max-width:380px){
-  .stats{grid-template-columns:1fr;}
-}
-.stat{
-  background:var(--bg-primary);
-  border-radius:var(--radius-lg);
-  padding:20px 16px;
-  text-align:center;
-  border:1px solid var(--border);
-  box-shadow:var(--shadow);
-  transition:all 0.2s ease;
-}
-.stat:hover{
-  transform:translateY(-4px);
-  box-shadow:var(--shadow-lg);
-}
-.stat-n{
-  font-size:28px;
-  font-weight:700;
-  line-height:1;
-}
-.stat-n.t{color:var(--secondary);}
-.stat-n.d1{color:var(--primary);}
-.stat-n.d2{color:var(--secondary);}
-.stat-l{
-  font-size:11px;
-  color:var(--text-secondary);
-  text-transform:uppercase;
-  letter-spacing:1px;
-  margin-top:8px;
-  font-weight:600;
-}
-.stat-n.ok{color:var(--success);}
-.rec-hdr{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:16px;
-}
 .btn-clear{
   padding:8px 16px;
   border-radius:var(--radius);
@@ -479,6 +347,12 @@ body{
 .btn-clear.conf:hover{
   background:#dc2626;
   border-color:#dc2626;
+}
+.rec-hdr{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:16px;
 }
 .rc{
   background:var(--bg-primary);
@@ -591,65 +465,46 @@ body{
 }
 </style>
 
-<h2 class="sr-only" style="position:absolute;left:-9999px">Event QR Scanner & Report — Scan tickets and view attendance records</h2>
+<h2 class="sr-only" style="position:absolute;left:-9999px">Manual QR Entry — Paste JSON data to record attendance</h2>
 
 <div class="container">
 
 <div class="hdr">
-  <div class="hdr-ico"><i class="ti ti-scan" aria-hidden="true"></i></div>
-  <div><div class="hdr-ttl">QR Scanner & Report</div><div class="hdr-sub">SST Farewell — Attendance</div></div>
+  <div class="hdr-ico"><i class="ti ti-keyboard" aria-hidden="true"></i></div>
+  <div><div class="hdr-ttl">Manual Entry</div><div class="hdr-sub">SST Farewell — Paste QR Data</div></div>
 </div>
 
-<div class="tabs">
-  <button class="tab on" onclick="sw('scan')" id="t-scan" aria-label="Scan tab">
-    <i class="ti ti-scan" aria-hidden="true"></i>Scan
-  </button>
-  <button class="tab" onclick="sw('rec')" id="t-rec" aria-label="Records tab">
-    <i class="ti ti-list-details" aria-hidden="true"></i>Records
-  </button>
+<div class="stats" id="stats-bar">
+  <div class="stat"><div class="stat-n t" id="s-tot">0</div><div class="stat-l">Total</div></div>
+  <div class="stat"><div class="stat-n d1" id="s-d1">0</div><div class="stat-l">Day 1 in</div></div>
+  <div class="stat"><div class="stat-n d2" id="s-d2">0</div><div class="stat-l">Day 2 in</div></div>
 </div>
 
-<div id="p-scan" class="panel on" role="tabpanel">
-  <div class="sec">QR scanner</div>
-  <div id="scan-main" style="animation:fadeInUp 0.4s ease;">
-    <div class="cam-box">
-      <div class="cam-ph" id="cam-ph"><i class="ti ti-camera-off" aria-hidden="true"></i><p>Camera off — press Start</p></div>
-      <video id="video" playsinline autoplay muted></video>
-      <canvas id="canvas"></canvas>
-      <div class="sf" id="sf"><div class="sfc"><div class="scc sc-tl"></div><div class="scc sc-tr"></div><div class="scc sc-bl"></div><div class="scc sc-br"></div><div class="sl"></div></div></div>
-    </div>
-    <div class="scan-btns">
-      <button class="btn-scan start" id="bs-start" onclick="camStart()"><i class="ti ti-player-play" aria-hidden="true"></i>Start scanner</button>
-      <button class="btn-scan stop" id="bs-stop" onclick="camStop()"><i class="ti ti-player-stop" aria-hidden="true"></i>Stop scanner</button>
-    </div>
-    <div class="instr">
-      <div class="instr-ttl"><i class="ti ti-info-circle" aria-hidden="true"></i>How it works</div>
-      <ul>
-        <li>Point camera at attendee's QR code</li>
-        <li>Each ticket can only be scanned once</li>
-        <li>Day 1 and Day 2 are separate tickets</li>
-        <li>Already-used tickets show "already entered"</li>
-      </ul>
-    </div>
+<div class="sec">Paste QR data</div>
+<div class="card">
+  <div class="fg">
+    <label>JSON Data</label>
+    <textarea id="json-input" placeholder='Paste QR code JSON data here, e.g.:
+{"ev":"SST_FW26","uid":"MQTB3WDZ60OPI","day":1,"rn":"123","nm":"123","ph":"123","bt":"123","dg":"123"}'></textarea>
   </div>
-  <div id="scan-result" style="display:none"></div>
+  <button class="btn-submit" onclick="processEntry()"><i class="ti ti-check" aria-hidden="true"></i> Process Entry</button>
 </div>
 
-<div id="p-rec" class="panel" role="tabpanel">
-  <div class="stats" id="stats-bar">
-    <div class="stat"><div class="stat-n t" id="s-tot">0</div><div class="stat-l">Total</div></div>
-    <div class="stat"><div class="stat-n d1" id="s-d1">0</div><div class="stat-l">Day 1 in</div></div>
-    <div class="stat"><div class="stat-n d2" id="s-d2">0</div><div class="stat-l">Day 2 in</div></div>
-  </div>
-  <div class="rec-hdr"><div class="sec" style="margin-bottom:0">Candidates</div><button class="btn-clear" id="btn-cl" onclick="doClear()"><i class="ti ti-trash" aria-hidden="true"></i><span id="cl-lbl">Clear all</span></button></div>
-  <div id="rec-list"></div>
+<div class="res-card" id="res-card">
+  <div class="res-ico" id="res-ico"></div>
+  <div class="res-ttl" id="res-ttl"></div>
+  <div class="res-sub" id="res-sub"></div>
+  <div class="res-info" id="res-info"></div>
 </div>
+
+<div class="rec-hdr"><div class="sec" style="margin-bottom:0">Records</div><button class="btn-clear" id="btn-cl" onclick="doClear()"><i class="ti ti-trash" aria-hidden="true"></i><span id="cl-lbl">Clear all</span></button></div>
+<div id="rec-list"></div>
 
 <div class="toast" id="toast"></div>
 </div>
 
 <script>
-var vstream=null,scanning=false,sid=null,lastRaw=null,clrPend=false,clrTimer=null;
+var clrPend=false,clrTimer=null;
 
 function esc(s){return String(s||'').replace(/[<>&"']/g,function(c){return{'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;',"'":'&#39;'}[c];});}
 function toast(m){var t=document.getElementById('toast');t.textContent=m;t.classList.add('on');setTimeout(function(){t.classList.remove('on');},2400);}
@@ -658,152 +513,127 @@ async function sget(k){try{var r=await window.storage.get(k);return r?JSON.parse
 async function sset(k,v){try{await window.storage.set(k,JSON.stringify(v));}catch(e){}}
 async function sdel(k){try{await window.storage.delete(k);}catch(e){}}
 
-function sw(name){
-  ['scan','rec'].forEach(function(n){
-    document.getElementById('p-'+n).classList.toggle('on',n===name);
-    document.getElementById('t-'+n).classList.toggle('on',n===name);
-  });
-  if(name!=='scan')camStop();
-  if(name==='rec')loadRec();
-}
-
-async function camStart(){
-  try{
-    vstream=await navigator.mediaDevices.getUserMedia({video:{facingMode:{ideal:'environment'}}});
-    var v=document.getElementById('video');v.srcObject=vstream;await v.play();
-    document.getElementById('cam-ph').style.display='none';
-    document.getElementById('sf').classList.add('on');
-    document.getElementById('bs-start').style.display='none';
-    document.getElementById('bs-stop').style.display='flex';
-    scanning=true;lastRaw=null;
-    sid=setInterval(scanFrame,180);
-  }catch(e){toast('Camera unavailable or permission denied');console.error(e);}
-}
-
-function camStop(){
-  if(vstream){vstream.getTracks().forEach(function(t){t.stop();});vstream=null;}
-  scanning=false;clearInterval(sid);sid=null;
-  var v=document.getElementById('video');v.srcObject=null;
-  document.getElementById('cam-ph').style.display='flex';
-  document.getElementById('sf').classList.remove('on');
-  document.getElementById('bs-start').style.display='flex';
-  document.getElementById('bs-stop').style.display='none';
-}
-
-function scanFrame(){
-  if(!scanning)return;
-  var v=document.getElementById('video'),c=document.getElementById('canvas');
-  if(!v||v.readyState<v.HAVE_ENOUGH_DATA||v.videoWidth===0)return;
-  c.width=v.videoWidth;c.height=v.videoHeight;
-  c.getContext('2d').drawImage(v,0,0,c.width,c.height);
-  var img=c.getContext('2d').getImageData(0,0,c.width,c.height);
-  var code=jsQR(img.data,img.width,img.height,{inversionAttempts:'dontInvert'});
-  if(code&&code.data&&code.data!==lastRaw){
-    lastRaw=code.data;
-    console.log('QR Code detected:', code.data);
-    clearInterval(sid);
-    scanning=false;
-    handleQR(code.data);
-  }
-}
-
-async function handleQR(raw){
+async function processEntry(){
+  var input=document.getElementById('json-input').value.trim();
+  if(!input){toast('Please paste JSON data');return;}
+  
   var d;
-  try{
-    d=JSON.parse(raw);
-    console.log('Parsed QR data:', d);
-  }catch(e){
-    console.error('Failed to parse QR:', e);
-    showRes('warn',null,null);
+  try{d=JSON.parse(input);}catch(e){
+    showRes('warn',null,null,'Invalid JSON format');
     return;
   }
+  
   if(!d||d.ev!=='SST_FW26'){
-    console.log('Invalid event code:', d?d.ev:'no data');
-    showRes('warn',null,null);
+    showRes('warn',null,null,'Invalid event code');
     return;
   }
+  
+  if(!d.uid||!d.day||!d.rn||!d.nm){
+    showRes('warn',null,null,'Missing required fields');
+    return;
+  }
+  
   var key='evt_sc_'+d.uid+'_d'+d.day;
-  console.log('Checking scan key:', key);
   var prev=await sget(key);
+  
   if(prev){
-    console.log('Already scanned:', prev);
-    showRes('err',d,prev);
+    showRes('err',d,prev,'Already inside the event');
   }else{
-    console.log('New scan, recording...');
     var rec={at:new Date().toISOString(),...d};
     await sset(key,rec);
     var list=await sget('evt_scan_cands')||[];
     var found=list.find(function(c){return c.uid===d.uid;});
     if(!found){
-      list.push({uid:d.uid,rn:d.rn,nm:d.nm,ph:d.ph,bt:d.bt,dg:d.dg,ca:new Date().toISOString()});
+      list.push({uid:d.uid,rn:d.rn,nm:d.nm,ph:d.ph||'',bt:d.bt||'',dg:d.dg||'',ca:new Date().toISOString()});
       await sset('evt_scan_cands',list);
     }
-    showRes('ok',d,null);
+    showRes('ok',d,null,'Entry accepted');
+    document.getElementById('json-input').value='';
+    loadStats();
+    loadRec();
   }
 }
 
-function showRes(type,d,prev){
-  document.getElementById('scan-main').style.display='none';
-  var sr=document.getElementById('scan-result');sr.style.display='block';
-  var ico='',ttl='',sub='',info='';
+function showRes(type,d,prev,msg){
+  var card=document.getElementById('res-card');
+  var ico=document.getElementById('res-ico');
+  var ttl=document.getElementById('res-ttl');
+  var sub=document.getElementById('res-sub');
+  var info=document.getElementById('res-info');
+  
+  card.classList.remove('show');
+  
   if(type==='ok'){
-    ico='<div class="res-ico ok"><i class="ti ti-circle-check" aria-hidden="true"></i></div>';
-    ttl='<div class="res-ttl ok">Entry Successful</div>';
-    sub='<div class="res-sub">Valid Day '+d.day+' ticket — attendance recorded</div>';
-    info=buildInfo(d,null);
+    ico.innerHTML='<i class="ti ti-circle-check" aria-hidden="true"></i>';
+    ico.className='res-ico ok';
+    ttl.textContent='Success';
+    ttl.className='res-ttl ok';
+    sub.textContent=msg;
+    info.innerHTML=buildInfo(d,null);
   }else if(type==='err'){
-    ico='<div class="res-ico err"><i class="ti ti-circle-x" aria-hidden="true"></i></div>';
-    ttl='<div class="res-ttl err">Already Entered</div>';
-    sub='<div class="res-sub">This Day '+d.day+' ticket was already scanned</div>';
-    info=buildInfo(d,prev);
+    ico.innerHTML='<i class="ti ti-circle-x" aria-hidden="true"></i>';
+    ico.className='res-ico err';
+    ttl.textContent='Rejected';
+    ttl.className='res-ttl err';
+    sub.textContent=msg;
+    info.innerHTML=buildInfo(d,prev);
   }else{
-    ico='<div class="res-ico warn"><i class="ti ti-alert-circle" aria-hidden="true"></i></div>';
-    ttl='<div class="res-ttl warn">Invalid QR Code</div>';
-    sub='<div class="res-sub">This QR is not valid for this event</div>';
-    info='';
+    ico.innerHTML='<i class="ti ti-alert-circle" aria-hidden="true"></i>';
+    ico.className='res-ico warn';
+    ttl.textContent='Error';
+    ttl.className='res-ttl warn';
+    sub.textContent=msg;
+    info.innerHTML='';
   }
-  sr.innerHTML='<div class="res-card">'+ico+ttl+sub+(info?'<div class="res-info">'+info+'</div>':'')+'</div><button class="btn-next" onclick="resumeScan()"><i class="ti ti-scan" aria-hidden="true"></i>Scan next ticket</button>';
+  
+  setTimeout(function(){card.classList.add('show');},10);
 }
 
 function buildInfo(d,prev){
   var dp=d.day===1?'d1':'d2';
   var rows=[
-    row('Name',esc(d.nm)),row('Roll no.',esc(d.rn)),
-    row('Phone',esc(d.ph)),row('Batch',esc(d.bt)),row('Degree',esc(d.dg)),
+    row('Name',esc(d.nm)),
+    row('Roll no.',esc(d.rn)),
+    d.ph?row('Phone',esc(d.ph)):'',
+    d.bt?row('Batch',esc(d.bt)):'',
+    d.dg?row('Degree',esc(d.dg)):'',
     '<div class="ri"><span class="ri-k">Day</span><span class="ri-v"><span class="dpill '+dp+'">Day '+d.day+'</span></span></div>'
   ];
   if(prev&&prev.at){
     var t=new Date(prev.at);
     var ts=t.toLocaleDateString('en-PK',{day:'2-digit',month:'short'})+' '+t.toLocaleTimeString('en-PK',{hour:'2-digit',minute:'2-digit'});
-    rows.push('<div class="ri" style="border-top:0.5px solid var(--err)"><span class="ri-k" style="color:var(--err)">First entered</span><span class="ri-v" style="color:var(--err);font-size:12px">'+ts+'</span></div>');
+    rows.push('<div class="ri" style="border-top:1px solid var(--error)"><span class="ri-k" style="color:var(--error)">First entered</span><span class="ri-v" style="color:var(--error);font-size:12px">'+ts+'</span></div>');
   }
-  return rows.join('');
+  return rows.filter(function(r){return r;}).join('');
 }
 
 function row(k,v){return '<div class="ri"><span class="ri-k">'+k+'</span><span class="ri-v">'+v+'</span></div>';}
 
-function resumeScan(){
-  document.getElementById('scan-result').style.display='none';
-  document.getElementById('scan-result').innerHTML='';
-  document.getElementById('scan-main').style.display='block';
-  lastRaw=null;camStart();
+async function loadStats(){
+  var list=await sget('evt_scan_cands')||[];
+  document.getElementById('s-tot').textContent=list.length;
+  var d1=0,d2=0;
+  for(var i=0;i<list.length;i++){
+    var c=list[i];
+    var s1=await sget('evt_sc_'+c.uid+'_d1');
+    var s2=await sget('evt_sc_'+c.uid+'_d2');
+    if(s1)d1++;
+    if(s2)d2++;
+  }
+  document.getElementById('s-d1').textContent=d1;
+  document.getElementById('s-d2').textContent=d2;
 }
 
 async function loadRec(){
   var list=await sget('evt_scan_cands')||[];
-  document.getElementById('s-tot').textContent=list.length;
-  var d1=0,d2=0;
   var rows=[];
   for(var i=0;i<list.length;i++){
     var c=list[i];
     var s1=await sget('evt_sc_'+c.uid+'_d1');
     var s2=await sget('evt_sc_'+c.uid+'_d2');
-    if(s1)d1++;if(s2)d2++;
-    rows.push('<div class="rc"><div class="rc-top"><div><div class="rc-nm">'+esc(c.nm)+'</div><div class="rc-rl">'+esc(c.rn)+'</div></div><div class="rc-bs"><span class="rbadge '+(s1?'ok':'pend')+'">D1 '+(s1?'✓ In':'⏳ Pending')+'</span><span class="rbadge '+(s2?'ok':'pend')+'">D2 '+(s2?'✓ In':'⏳ Pending')+'</span></div></div><div class="rc-chips"><span class="chip"><i class="ti ti-phone" aria-hidden="true"></i>'+esc(c.ph)+'</span><span class="chip"><i class="ti ti-school" aria-hidden="true"></i>'+esc(c.bt)+'</span><span class="chip"><i class="ti ti-certificate" aria-hidden="true"></i>'+esc(c.dg)+'</span></div></div>');
+    rows.push('<div class="rc"><div class="rc-top"><div><div class="rc-nm">'+esc(c.nm)+'</div><div class="rc-rl">'+esc(c.rn)+'</div></div><div class="rc-bs"><span class="rbadge '+(s1?'ok':'pend')+'">D1 '+(s1?'✓ In':'⏳ Pending')+'</span><span class="rbadge '+(s2?'ok':'pend')+'">D2 '+(s2?'✓ In':'⏳ Pending')+'</span></div></div><div class="rc-chips">'+(c.ph?'<span class="chip"><i class="ti ti-phone" aria-hidden="true"></i>'+esc(c.ph)+'</span>':'')+(c.bt?'<span class="chip"><i class="ti ti-school" aria-hidden="true"></i>'+esc(c.bt)+'</span>':'')+(c.dg?'<span class="chip"><i class="ti ti-certificate" aria-hidden="true"></i>'+esc(c.dg)+'</span>':'')+'</div></div>');
   }
-  document.getElementById('s-d1').textContent=d1;
-  document.getElementById('s-d2').textContent=d2;
-  document.getElementById('rec-list').innerHTML=list.length?rows.join(''):'<div class="empty"><i class="ti ti-ticket" aria-hidden="true"></i><p>No candidates yet. Scan QR tickets to record attendance.</p></div>';
+  document.getElementById('rec-list').innerHTML=list.length?rows.join(''):'<div class="empty"><i class="ti ti-keyboard" aria-hidden="true"></i><p>No records yet. Paste QR data to add entries.</p></div>';
 }
 
 async function doClear(){
@@ -819,7 +649,10 @@ async function doClear(){
     var list=await sget('evt_scan_cands')||[];
     for(var i=0;i<list.length;i++){await sdel('evt_sc_'+list[i].uid+'_d1');await sdel('evt_sc_'+list[i].uid+'_d2');}
     await sdel('evt_scan_cands');
-    toast('All records cleared');loadRec();
+    toast('All records cleared');loadStats();loadRec();
   }
 }
+
+loadStats();
+loadRec();
 </script>
