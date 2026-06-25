@@ -1,0 +1,310 @@
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jsQR/1.4.0/jsQR.min.js"></script>
+<style>
+:root{--d1:#7F77DD;--d1-bg:#EEEDFE;--d1-txt:#3C3489;--d2:#D4537E;--d2-bg:#FBEAF0;--d2-txt:#72243E;--ok:#0F6E56;--ok-bg:#E1F5EE;--err:#A32D2D;--err-bg:#FCEBEB;--warn:#854F0B;--warn-bg:#FAEEDA;}
+@media(prefers-color-scheme:dark){:root{--d1:#AFA9EC;--d1-bg:#3C3489;--d1-txt:#EEEDFE;--d2:#ED93B1;--d2-bg:#72243E;--d2-txt:#FBEAF0;--ok:#5DCAA5;--ok-bg:#085041;--err:#F09595;--err-bg:#501313;--warn:#EF9F27;--warn-bg:#412402;}}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--color-background-tertiary);color:var(--color-text-primary);font-size:15px;}
+.hdr{padding:14px 16px 12px;background:var(--color-background-primary);border-bottom:0.5px solid var(--color-border-tertiary);display:flex;align-items:center;gap:10px;}
+.hdr-ico{width:36px;height:36px;border-radius:var(--border-radius-md);background:var(--d2-bg);display:flex;align-items:center;justify-content:center;color:var(--d2);}
+.hdr-ico i{font-size:20px;}
+.hdr-ttl{font-size:15px;font-weight:500;}
+.hdr-sub{font-size:12px;color:var(--color-text-secondary);margin-top:1px;}
+.tabs{display:flex;background:var(--color-background-primary);border-bottom:0.5px solid var(--color-border-tertiary);position:sticky;top:0;z-index:5;}
+.tab{flex:1;padding:11px 6px;text-align:center;font-size:12px;font-weight:500;color:var(--color-text-secondary);cursor:pointer;border:none;background:none;border-bottom:2px solid transparent;transition:color .15s,border-color .15s;white-space:nowrap;}
+.tab.on{color:var(--d2);border-bottom-color:var(--d2);}
+.tab i{display:block;font-size:18px;margin-bottom:2px;}
+.panel{display:none;padding:14px 14px 60px;}
+.panel.on{display:block;}
+.sec{font-size:11px;font-weight:500;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.6px;margin-bottom:10px;}
+.cam-box{border-radius:var(--border-radius-lg);overflow:hidden;background:#000;aspect-ratio:4/3;position:relative;margin-bottom:11px;}
+#video{width:100%;height:100%;object-fit:cover;display:block;}
+#canvas{display:none;}
+.cam-ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;background:var(--color-background-secondary);}
+.cam-ph i{font-size:44px;color:var(--color-text-tertiary);}
+.cam-ph p{font-size:13px;color:var(--color-text-secondary);}
+.sf{position:absolute;inset:0;display:none;align-items:center;justify-content:center;pointer-events:none;}
+.sf.on{display:flex;}
+.sfc{width:170px;height:170px;position:relative;}
+.scc{position:absolute;width:22px;height:22px;border-color:#fff;border-style:solid;}
+.sc-tl{top:0;left:0;border-width:2px 0 0 2px;border-radius:3px 0 0 0;}
+.sc-tr{top:0;right:0;border-width:2px 2px 0 0;border-radius:0 3px 0 0;}
+.sc-bl{bottom:0;left:0;border-width:0 0 2px 2px;border-radius:0 0 0 3px;}
+.sc-br{bottom:0;right:0;border-width:0 2px 2px 0;border-radius:0 0 3px 0;}
+.sl{position:absolute;left:0;right:0;height:1.5px;background:rgba(212,83,126,.85);animation:scan 1.8s ease-in-out infinite;}
+@keyframes scan{0%,100%{top:0}50%{top:100%}}
+.scan-btns{display:flex;gap:9px;margin-bottom:12px;}
+.btn-scan{flex:1;padding:11px;border-radius:var(--border-radius-md);font-size:13px;font-weight:500;cursor:pointer;font-family:inherit;border:0.5px solid var(--color-border-secondary);display:flex;align-items:center;justify-content:center;gap:7px;transition:opacity .15s;}
+.btn-scan i{font-size:17px;}
+.btn-scan.start{background:var(--ok-bg);border-color:var(--ok);color:var(--ok);}
+.btn-scan.stop{background:var(--err-bg);border-color:var(--err);color:var(--err);display:none;}
+.btn-scan:hover{opacity:.8;}
+.instr{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:11px 13px;border:0.5px solid var(--color-border-tertiary);}
+.instr-ttl{font-size:11px;font-weight:500;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.5px;margin-bottom:7px;display:flex;align-items:center;gap:5px;}
+.instr-ttl i{font-size:15px;}
+.instr li{font-size:12px;color:var(--color-text-secondary);list-style:none;padding:3px 0;display:flex;align-items:flex-start;gap:5px;}
+.instr li::before{content:"•";color:var(--d2);flex-shrink:0;margin-top:1px;}
+.res-card{border-radius:var(--border-radius-lg);border:0.5px solid var(--color-border-tertiary);padding:18px 14px;text-align:center;margin-bottom:11px;background:var(--color-background-primary);}
+.res-ico{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 12px;}
+.res-ico i{font-size:28px;}
+.res-ico.ok{background:var(--ok-bg);color:var(--ok);}
+.res-ico.err{background:var(--err-bg);color:var(--err);}
+.res-ico.warn{background:var(--warn-bg);color:var(--warn);}
+.res-ttl{font-size:17px;font-weight:500;margin-bottom:3px;}
+.res-ttl.ok{color:var(--ok);}
+.res-ttl.err{color:var(--err);}
+.res-ttl.warn{color:var(--warn);}
+.res-sub{font-size:12px;color:var(--color-text-secondary);margin-bottom:14px;}
+.res-info{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:11px;text-align:left;border:0.5px solid var(--color-border-tertiary);}
+.ri{display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:0.5px solid var(--color-border-tertiary);}
+.ri:last-child{border-bottom:none;}
+.ri-k{font-size:11px;color:var(--color-text-secondary);}
+.ri-v{font-size:13px;font-weight:500;}
+.dpill{padding:2px 9px;border-radius:20px;font-size:10px;font-weight:500;}
+.dpill.d1{background:var(--d1-bg);color:var(--d1-txt);}
+.dpill.d2{background:var(--d2-bg);color:var(--d2-txt);}
+.btn-next{width:100%;padding:11px;border-radius:var(--border-radius-md);border:0.5px solid var(--color-border-secondary);background:var(--color-background-secondary);color:var(--color-text-primary);font-size:13px;font-weight:500;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:7px;transition:background .15s;}
+.btn-next i{font-size:17px;}
+.btn-next:hover{background:var(--color-background-tertiary);}
+.stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:14px;}
+.stat{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:12px;text-align:center;}
+.stat-n{font-size:22px;font-weight:500;}
+.stat-n.t{color:var(--d2);}
+.stat-n.d1{color:var(--d1);}
+.stat-n.d2{color:var(--d2);}
+.stat-l{font-size:10px;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.5px;margin-top:3px;}
+.stat-n.ok{color:var(--ok);}
+.rec-hdr{display:flex;justify-content:space-between;align-items:center;margin-bottom:11px;}
+.btn-clear{padding:5px 11px;border-radius:var(--border-radius-md);border:0.5px solid var(--color-border-secondary);background:none;color:var(--color-text-secondary);font-size:12px;cursor:pointer;font-family:inherit;display:flex;align-items:center;gap:4px;transition:color .15s,border-color .15s;}
+.btn-clear i{font-size:14px;}
+.btn-clear.conf{color:var(--err);border-color:var(--err);}
+.rc{background:var(--color-background-primary);border-radius:var(--border-radius-lg);border:0.5px solid var(--color-border-tertiary);padding:12px 13px;margin-bottom:9px;}
+.rc-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;}
+.rc-nm{font-size:14px;font-weight:500;}
+.rc-rl{font-size:11px;color:var(--color-text-secondary);}
+.rc-bs{display:flex;flex-direction:column;gap:3px;align-items:flex-end;}
+.rbadge{font-size:9px;font-weight:500;padding:2px 8px;border-radius:20px;white-space:nowrap;}
+.rbadge.ok{background:var(--ok-bg);color:var(--ok);}
+.rbadge.pend{background:var(--color-background-secondary);color:var(--color-text-secondary);border:0.5px solid var(--color-border-secondary);}
+.rc-chips{display:flex;flex-wrap:wrap;gap:5px;}
+.chip{font-size:10px;padding:3px 8px;background:var(--color-background-secondary);border-radius:20px;color:var(--color-text-secondary);border:0.5px solid var(--color-border-tertiary);display:flex;align-items:center;gap:3px;}
+.chip i{font-size:12px;}
+.empty{text-align:center;padding:44px 20px;color:var(--color-text-secondary);}
+.empty i{font-size:40px;display:block;margin-bottom:10px;color:var(--color-text-tertiary);}
+.empty p{font-size:13px;}
+.toast{position:absolute;bottom:20px;left:50%;transform:translateX(-50%) translateY(6px);background:var(--color-background-primary);border:0.5px solid var(--color-border-secondary);color:var(--color-text-primary);border-radius:var(--border-radius-md);padding:9px 16px;font-size:12px;font-weight:500;white-space:nowrap;opacity:0;transition:all .22s;pointer-events:none;z-index:20;}
+.toast.on{opacity:1;transform:translateX(-50%) translateY(0);}
+</style>
+
+<h2 class="sr-only" style="position:absolute;left:-9999px">Event QR Scanner & Report — Scan tickets and view attendance records</h2>
+
+<div style="position:relative;max-width:420px;margin:0 auto;">
+
+<div class="hdr">
+  <div class="hdr-ico"><i class="ti ti-scan" aria-hidden="true"></i></div>
+  <div><div class="hdr-ttl">QR Scanner & Report</div><div class="hdr-sub">SST Farewell — Attendance</div></div>
+</div>
+
+<div class="tabs">
+  <button class="tab on" onclick="sw('scan')" id="t-scan" aria-label="Scan tab">
+    <i class="ti ti-scan" aria-hidden="true"></i>Scan
+  </button>
+  <button class="tab" onclick="sw('rec')" id="t-rec" aria-label="Records tab">
+    <i class="ti ti-list-details" aria-hidden="true"></i>Records
+  </button>
+</div>
+
+<div id="p-scan" class="panel on" role="tabpanel">
+  <div class="sec">QR scanner</div>
+  <div id="scan-main">
+    <div class="cam-box">
+      <div class="cam-ph" id="cam-ph"><i class="ti ti-camera-off" aria-hidden="true"></i><p>Camera off — press Start</p></div>
+      <video id="video" playsinline autoplay muted></video>
+      <canvas id="canvas"></canvas>
+      <div class="sf" id="sf"><div class="sfc"><div class="scc sc-tl"></div><div class="scc sc-tr"></div><div class="scc sc-bl"></div><div class="scc sc-br"></div><div class="sl"></div></div></div>
+    </div>
+    <div class="scan-btns">
+      <button class="btn-scan start" id="bs-start" onclick="camStart()"><i class="ti ti-player-play" aria-hidden="true"></i>Start scanner</button>
+      <button class="btn-scan stop" id="bs-stop" onclick="camStop()"><i class="ti ti-player-stop" aria-hidden="true"></i>Stop scanner</button>
+    </div>
+    <div class="instr">
+      <div class="instr-ttl"><i class="ti ti-info-circle" aria-hidden="true"></i>How it works</div>
+      <ul>
+        <li>Point camera at attendee's QR code</li>
+        <li>Each ticket can only be scanned once</li>
+        <li>Day 1 and Day 2 are separate tickets</li>
+        <li>Already-used tickets show the original scan time</li>
+      </ul>
+    </div>
+  </div>
+  <div id="scan-result" style="display:none"></div>
+</div>
+
+<div id="p-rec" class="panel" role="tabpanel">
+  <div class="stats" id="stats-bar">
+    <div class="stat"><div class="stat-n t" id="s-tot">0</div><div class="stat-l">Total</div></div>
+    <div class="stat"><div class="stat-n d1" id="s-d1">0</div><div class="stat-l">Day 1 in</div></div>
+    <div class="stat"><div class="stat-n d2" id="s-d2">0</div><div class="stat-l">Day 2 in</div></div>
+  </div>
+  <div class="rec-hdr"><div class="sec" style="margin-bottom:0">Candidates</div><button class="btn-clear" id="btn-cl" onclick="doClear()"><i class="ti ti-trash" aria-hidden="true"></i><span id="cl-lbl">Clear all</span></button></div>
+  <div id="rec-list"></div>
+</div>
+
+<div class="toast" id="toast"></div>
+</div>
+
+<script>
+var vstream=null,scanning=false,sid=null,lastRaw=null,clrPend=false,clrTimer=null;
+
+function esc(s){return String(s||'').replace(/[<>&"']/g,function(c){return{'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;',"'":'&#39;'}[c];});}
+function toast(m){var t=document.getElementById('toast');t.textContent=m;t.classList.add('on');setTimeout(function(){t.classList.remove('on');},2400);}
+
+async function sget(k){try{var r=await window.storage.get(k);return r?JSON.parse(r.value):null;}catch(e){return null;}}
+async function sset(k,v){try{await window.storage.set(k,JSON.stringify(v));}catch(e){}}
+async function sdel(k){try{await window.storage.delete(k);}catch(e){}}
+
+function sw(name){
+  ['scan','rec'].forEach(function(n){
+    document.getElementById('p-'+n).classList.toggle('on',n===name);
+    document.getElementById('t-'+n).classList.toggle('on',n===name);
+  });
+  if(name!=='scan')camStop();
+  if(name==='rec')loadRec();
+}
+
+async function camStart(){
+  try{
+    vstream=await navigator.mediaDevices.getUserMedia({video:{facingMode:{ideal:'environment'}}});
+    var v=document.getElementById('video');v.srcObject=vstream;await v.play();
+    document.getElementById('cam-ph').style.display='none';
+    document.getElementById('sf').classList.add('on');
+    document.getElementById('bs-start').style.display='none';
+    document.getElementById('bs-stop').style.display='flex';
+    scanning=true;lastRaw=null;
+    sid=setInterval(scanFrame,180);
+  }catch(e){toast('Camera unavailable or permission denied');}
+}
+
+function camStop(){
+  if(vstream){vstream.getTracks().forEach(function(t){t.stop();});vstream=null;}
+  scanning=false;clearInterval(sid);sid=null;
+  var v=document.getElementById('video');v.srcObject=null;
+  document.getElementById('cam-ph').style.display='flex';
+  document.getElementById('sf').classList.remove('on');
+  document.getElementById('bs-start').style.display='flex';
+  document.getElementById('bs-stop').style.display='none';
+}
+
+function scanFrame(){
+  if(!scanning)return;
+  var v=document.getElementById('video'),c=document.getElementById('canvas');
+  if(!v||v.readyState<v.HAVE_ENOUGH_DATA||v.videoWidth===0)return;
+  c.width=v.videoWidth;c.height=v.videoHeight;
+  c.getContext('2d').drawImage(v,0,0,c.width,c.height);
+  var img=c.getContext('2d').getImageData(0,0,c.width,c.height);
+  var code=jsQR(img.data,img.width,img.height,{inversionAttempts:'dontInvert'});
+  if(code&&code.data&&code.data!==lastRaw){lastRaw=code.data;clearInterval(sid);scanning=false;handleQR(code.data);}
+}
+
+async function handleQR(raw){
+  var d;
+  try{d=JSON.parse(raw);}catch(e){showRes('warn',null,null);return;}
+  if(d.ev!=='SST_FW26'){showRes('warn',null,null);return;}
+  var key='evt_sc_'+d.uid+'_d'+d.day;
+  var prev=await sget(key);
+  if(prev){showRes('err',d,prev);}
+  else{
+    var rec={at:new Date().toISOString(),...d};
+    await sset(key,rec);
+    var list=await sget('evt_scan_cands')||[];
+    var found=list.find(function(c){return c.uid===d.uid;});
+    if(!found){
+      list.push({uid:d.uid,rn:d.rn,nm:d.nm,ph:d.ph,bt:d.bt,dg:d.dg,ca:new Date().toISOString()});
+      await sset('evt_scan_cands',list);
+    }
+    showRes('ok',d,null);
+  }
+}
+
+function showRes(type,d,prev){
+  document.getElementById('scan-main').style.display='none';
+  var sr=document.getElementById('scan-result');sr.style.display='block';
+  var ico='',ttl='',sub='',info='';
+  if(type==='ok'){
+    ico='<div class="res-ico ok"><i class="ti ti-circle-check" aria-hidden="true"></i></div>';
+    ttl='<div class="res-ttl ok">Access granted</div>';
+    sub='<div class="res-sub">Valid Day '+d.day+' ticket — entry recorded</div>';
+    info=buildInfo(d,null);
+  }else if(type==='err'){
+    ico='<div class="res-ico err"><i class="ti ti-circle-x" aria-hidden="true"></i></div>';
+    ttl='<div class="res-ttl err">Already used</div>';
+    sub='<div class="res-sub">This Day '+d.day+' ticket was already scanned</div>';
+    info=buildInfo(d,prev);
+  }else{
+    ico='<div class="res-ico warn"><i class="ti ti-alert-circle" aria-hidden="true"></i></div>';
+    ttl='<div class="res-ttl warn">Invalid QR code</div>';
+    sub='<div class="res-sub">This QR is not valid for this event</div>';
+    info='';
+  }
+  sr.innerHTML='<div class="res-card">'+ico+ttl+sub+(info?'<div class="res-info">'+info+'</div>':'')+'</div><button class="btn-next" onclick="resumeScan()"><i class="ti ti-scan" aria-hidden="true"></i>Scan next ticket</button>';
+}
+
+function buildInfo(d,prev){
+  var dp=d.day===1?'d1':'d2';
+  var rows=[
+    row('Name',esc(d.nm)),row('Roll no.',esc(d.rn)),
+    row('Phone',esc(d.ph)),row('Batch',esc(d.bt)),row('Degree',esc(d.dg)),
+    '<div class="ri"><span class="ri-k">Day</span><span class="ri-v"><span class="dpill '+dp+'">Day '+d.day+'</span></span></div>'
+  ];
+  if(prev&&prev.at){
+    var t=new Date(prev.at);
+    var ts=t.toLocaleDateString('en-PK',{day:'2-digit',month:'short'})+' '+t.toLocaleTimeString('en-PK',{hour:'2-digit',minute:'2-digit'});
+    rows.push('<div class="ri" style="border-top:0.5px solid var(--err)"><span class="ri-k" style="color:var(--err)">First scanned</span><span class="ri-v" style="color:var(--err);font-size:12px">'+ts+'</span></div>');
+  }
+  return rows.join('');
+}
+
+function row(k,v){return '<div class="ri"><span class="ri-k">'+k+'</span><span class="ri-v">'+v+'</span></div>';}
+
+function resumeScan(){
+  document.getElementById('scan-result').style.display='none';
+  document.getElementById('scan-result').innerHTML='';
+  document.getElementById('scan-main').style.display='block';
+  lastRaw=null;camStart();
+}
+
+async function loadRec(){
+  var list=await sget('evt_scan_cands')||[];
+  document.getElementById('s-tot').textContent=list.length;
+  var d1=0,d2=0;
+  var rows=[];
+  for(var i=0;i<list.length;i++){
+    var c=list[i];
+    var s1=await sget('evt_sc_'+c.uid+'_d1');
+    var s2=await sget('evt_sc_'+c.uid+'_d2');
+    if(s1)d1++;if(s2)d2++;
+    rows.push('<div class="rc"><div class="rc-top"><div><div class="rc-nm">'+esc(c.nm)+'</div><div class="rc-rl">'+esc(c.rn)+'</div></div><div class="rc-bs"><span class="rbadge '+(s1?'ok':'pend')+'">D1 '+(s1?'✓ In':'⏳ Pending')+'</span><span class="rbadge '+(s2?'ok':'pend')+'">D2 '+(s2?'✓ In':'⏳ Pending')+'</span></div></div><div class="rc-chips"><span class="chip"><i class="ti ti-phone" aria-hidden="true"></i>'+esc(c.ph)+'</span><span class="chip"><i class="ti ti-school" aria-hidden="true"></i>'+esc(c.bt)+'</span><span class="chip"><i class="ti ti-certificate" aria-hidden="true"></i>'+esc(c.dg)+'</span></div></div>');
+  }
+  document.getElementById('s-d1').textContent=d1;
+  document.getElementById('s-d2').textContent=d2;
+  document.getElementById('rec-list').innerHTML=list.length?rows.join(''):'<div class="empty"><i class="ti ti-ticket" aria-hidden="true"></i><p>No candidates yet. Scan QR tickets to record attendance.</p></div>';
+}
+
+async function doClear(){
+  if(!clrPend){
+    clrPend=true;
+    document.getElementById('cl-lbl').textContent='Confirm clear?';
+    document.getElementById('btn-cl').classList.add('conf');
+    clrTimer=setTimeout(function(){clrPend=false;document.getElementById('cl-lbl').textContent='Clear all';document.getElementById('btn-cl').classList.remove('conf');},3500);
+  }else{
+    clearTimeout(clrTimer);clrPend=false;
+    document.getElementById('cl-lbl').textContent='Clear all';
+    document.getElementById('btn-cl').classList.remove('conf');
+    var list=await sget('evt_scan_cands')||[];
+    for(var i=0;i<list.length;i++){await sdel('evt_sc_'+list[i].uid+'_d1');await sdel('evt_sc_'+list[i].uid+'_d2');}
+    await sdel('evt_scan_cands');
+    toast('All records cleared');loadRec();
+  }
+}
+</script>
